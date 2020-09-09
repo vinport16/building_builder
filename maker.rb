@@ -5,8 +5,7 @@ require "./Facade"
 # +Y direction: up
 # +Z direction: away (into screen)
 
-
-def export_obj(faces)
+def export_obj faces
   v = []
   v_index = {}
   f = []
@@ -33,7 +32,11 @@ end
 
 
 
-my_facade = Facade.new(2,1,0.2,[Doorway.new(90,75)])
+my_facade = Facade.new(2,5,0.2,[Doorway.new(90,75),
+                                Window.new(70,50,70),
+                                Window.new(70,50,70),
+                                Doorway.new(90,75),
+                                Window.new(70,40,50)])
 
 
 export_obj(my_facade.faces)

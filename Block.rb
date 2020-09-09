@@ -7,8 +7,7 @@ require "./Box"
 
 class Block
   
-  attr_reader :position, :box
-  attr_accessor :front_color, :back_color, :top_color, :bottom_color, :left_color, :right_color
+  attr_accessor :position, :box, :front_color, :back_color, :top_color, :bottom_color, :left_color, :right_color
   
   def initialize(box)
     @box = box.copy
@@ -40,4 +39,17 @@ class Block
     return f.map {|face| face.map {|vector| vector+position}}
   end
 
+end
+
+
+def translate_faces faces, translation
+  f_out = []
+  faces.each do |face|
+    f_out << face.map {|vertex| vertex + translation}
+  end
+  return f_out
+end
+
+def translate_blocks blocks, translation
+  return blocks.map {|block| block.position + translation}
 end

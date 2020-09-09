@@ -23,11 +23,11 @@ class Vector
   end
 
   def *(n)
-    return Vector.new(x * n, y * n, z * n)
+    return Vector.new(x * n.to_f, y * n.to_f, z * n.to_f)
   end
 
   def /(n)
-    return Vector.new(x / n, y / n, z / n)
+    return Vector.new(x / n.to_f, y / n.to_f, z / n.to_f)
   end
 
   def to_s
