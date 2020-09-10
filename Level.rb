@@ -31,7 +31,7 @@ class Level
         dz -= facades[idx].width
       end
     end
-    return dx == 0 && dz == 0
+    return dx.round(5) == 0 && dz.round(5) == 0
   end
 
   def faces

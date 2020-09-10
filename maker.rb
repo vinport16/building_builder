@@ -40,6 +40,32 @@ my_facade = Facade.new(2,5,0.2,[Doorway.new(90,75),
 
 my_level = Level.new([my_facade, my_facade, my_facade, my_facade], [0,1,2,3])
 
+doorway_facade = Facade.new(3,5.5,0.25,[Window.new(33,0,100),
+                                        Window.new(33,0,100),
+                                        Doorway.new(90,70),
+                                        Window.new(33,0,100),
+                                        Window.new(33,0,100)])
+
+windows_facade = Facade.new(3,5.5,0.25,[Window.new(60,40,70),
+                                        Window.new(60,40,70),
+                                        Window.new(60,40,70),
+                                        Window.new(60,40,70),
+                                        Window.new(60,40,70)])
+
+
+my_level = Level.new([doorway_facade,
+                      windows_facade,
+                      windows_facade,
+                      doorway_facade,
+                      windows_facade,
+                      windows_facade,
+                      doorway_facade,
+                      windows_facade,
+                      windows_facade,
+                      doorway_facade,
+                      windows_facade,
+                      windows_facade],
+                     [0,1,0,1,2,1,2,3,2,3,0,3])
 
 
 export_obj(my_level.faces)
