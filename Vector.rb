@@ -35,7 +35,7 @@ class Vector
   end
 
   def rotate_y!
-    @x, @z = @z, -@x
+    @x, @z = -@z, @x
   end
 
   def copy

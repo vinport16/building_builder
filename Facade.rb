@@ -177,6 +177,20 @@ class Facade
     return Block.new(size, Vector.new(size.x/2, size.y/2, size.z/2))
   end
 
+  def blocks
+    width_per_component_unit = (width - 2 * thickness) / width_components.sum
+    b = []
+    for idx in 0...features.length
+      feature = features[idx]
+      x_translation = width_per_component_unit * width_components[0...idx].sum + thickness
+      b += translate_blocks(feature.blocks, Vector.new(x_translation, 0, 0))
+    end
+
+    b << left_corner_block
+
+    return b
+  end
+
   def faces
     width_per_component_unit = (width - 2 * thickness) / width_components.sum
     f = []

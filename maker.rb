@@ -1,4 +1,4 @@
-require "./Facade"
+require "./Level"
 
 # Using standard graphics dimensions:
 # +X direction: right
@@ -38,8 +38,11 @@ my_facade = Facade.new(2,5,0.2,[Doorway.new(90,75),
                                 Doorway.new(90,75),
                                 Window.new(70,40,50)])
 
+my_level = Level.new([my_facade, my_facade, my_facade, my_facade], [0,1,2,3])
 
-export_obj(my_facade.faces)
+
+
+export_obj(my_level.faces)
 
 
 

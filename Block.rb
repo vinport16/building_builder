@@ -30,7 +30,7 @@ class Block
     n.times do
       box.rotate_y!
       position.rotate_y!
-      front_color, left_color, back_color, right_color = left_color, back_color, right_color, front_color
+      front_color, right_color, back_color, left_color = right_color, back_color, left_color, front_color
     end
   end
 
@@ -51,5 +51,22 @@ def translate_faces faces, translation
 end
 
 def translate_blocks blocks, translation
-  return blocks.map {|block| block.position + translation}
+  blocks.each do |block|
+    block.position += translation
+  end
+  return blocks
 end
+
+def rotate_faces_y faces, rotation
+  faces.each do |face|
+    face.each do |vector|
+      rotation.times do
+        vector.rotate_y!
+      end
+    end
+  end
+end
+
+
+
+
