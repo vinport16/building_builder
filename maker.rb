@@ -5,7 +5,7 @@ require "./Level"
 # +Y direction: up
 # +Z direction: away (into screen)
 
-def export_obj faces
+def export_obj faces, filename
   v = []
   v_index = {}
   f = []
@@ -27,7 +27,7 @@ def export_obj faces
   f_strings = f.map {|face| face.join(" ")}
   second_part = "\nf " + f_strings.join("\nf ")
 
-  File.write('out.obj', first_part + second_part)
+  File.write("#{filename}.obj", first_part + second_part)
 end
 
 
@@ -38,7 +38,7 @@ my_facade = Facade.new(2,5,0.2,[Doorway.new(90,75),
                                 Doorway.new(90,75),
                                 Window.new(70,40,50)])
 
-my_level = Level.new([my_facade, my_facade, my_facade, my_facade], [0,1,2,3])
+my_square_level = Level.new([my_facade, my_facade, my_facade, my_facade], [0,1,2,3])
 
 doorway_facade = Facade.new(3,5.5,0.25,[Window.new(33,0,100),
                                         Window.new(33,0,100),
@@ -53,7 +53,7 @@ windows_facade = Facade.new(3,5.5,0.25,[Window.new(60,40,70),
                                         Window.new(60,40,70)])
 
 
-my_level = Level.new([doorway_facade,
+my_plus_level = Level.new([doorway_facade,
                       windows_facade,
                       windows_facade,
                       doorway_facade,
@@ -68,7 +68,8 @@ my_level = Level.new([doorway_facade,
                      [0,1,0,1,2,1,2,3,2,3,0,3])
 
 
-export_obj(my_level.faces)
+export_obj(my_plus_level.faces + [my_plus_level.roof_face], "plus")
+export_obj(my_square_level.faces, "square")
 
 
 
@@ -78,7 +79,7 @@ export_obj(my_level.faces)
 
 
 
-File.write('out.txt', 'Some glorious content')
+
 
 
 

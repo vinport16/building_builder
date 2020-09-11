@@ -21,17 +21,40 @@ class Level
     dz = 0
 
     for idx in 0...facades.length
+      actual_facade_width = facades[idx].width + facades[idx].thickness
       if orientations[idx]%4 == 0
-        dx += facades[idx].width
+        dx += actual_facade_width
       elsif orientations[idx]%4 == 1
-        dz += facades[idx].width
+        dz += actual_facade_width
       elsif orientations[idx]%4 == 2
-        dx -= facades[idx].width
+        dx -= actual_facade_width
       elsif orientations[idx]%4 == 3
-        dz -= facades[idx].width
+        dz -= actual_facade_width
       end
     end
     return dx.round(5) == 0 && dz.round(5) == 0
+  end
+
+  def roof_face
+    face = []
+
+    dx = 0
+    dz = 0
+
+    for idx in 0...facades.length
+      face << Vector.new(dx, facades[idx].height, dz)
+      actual_facade_width = facades[idx].width + facades[idx].thickness
+      if orientations[idx]%4 == 0
+        dx += actual_facade_width
+      elsif orientations[idx]%4 == 1
+        dz += actual_facade_width
+      elsif orientations[idx]%4 == 2
+        dx -= actual_facade_width
+      elsif orientations[idx]%4 == 3
+        dz -= actual_facade_width
+      end
+    end
+    return face.reverse
   end
 
   def faces
@@ -44,14 +67,15 @@ class Level
       f_faces = rotate_faces_y(f_faces, orientations[idx])
       f += translate_faces(f_faces, Vector.new(dx,0,dz))
 
+      actual_facade_width = facades[idx].width + facades[idx].thickness
       if orientations[idx]%4 == 0
-        dx += facades[idx].width
+        dx += actual_facade_width
       elsif orientations[idx]%4 == 1
-        dz += facades[idx].width
+        dz += actual_facade_width
       elsif orientations[idx]%4 == 2
-        dx -= facades[idx].width
+        dx -= actual_facade_width
       elsif orientations[idx]%4 == 3
-        dz -= facades[idx].width
+        dz -= actual_facade_width
       end
       
     end
